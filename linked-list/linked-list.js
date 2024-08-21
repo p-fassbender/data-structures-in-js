@@ -63,7 +63,49 @@ class LinkedList {
             prev.next = node
             this.size++
         }
+    }
 
+    removeFrom(index) {
+        if (index < 0 || index >= this.size) {
+            return null
+        }
+        let removedNode
+        if (index === 0) {
+            removedNode = this.head
+            this.head = this.head.next
+        } else {
+            let prev = this.head
+            for (let i = 0; i < index - 1; i++) {
+                prev = prev.next
+            }
+            removedNode = prev.next
+            prev.next = removedNode.next
+        }
+        this.size--
+        return removedNode.value
+    }
+
+    removeValue(value) {
+        if (this.isEmpty()) {
+            return null
+        }
+        if (this.head.value === value) {
+            this.head = this.head.next
+            this.size--
+            return value
+        } else {
+            let prev = this.head
+            while (prev.next && prev.next.value != value) {
+                prev = prev.next
+            }
+            if (prev.next) {
+                let removedNode = prev.next
+                prev.next = removedNode.next
+                this.size--
+                return value
+            }
+            return null
+        }
     }
 
     print() {
@@ -87,18 +129,21 @@ console.log('list is empty? ', list.isEmpty())
 console.log('list size: ', list.getSize())
 list.print()
 
+console.log("- PREPEND -")
 list.prepend(1)
 list.print()
 list.prepend(2)
 list.prepend(3)
 list.print()
 
+console.log("- APPEND -")
 list.append("a")
 list.print()
 list.append("b")
 list.append("c")
 list.print()
 
+console.log("- INSERT -")
 list.insert(11, 0)
 list.print()
 list.insert(22, 0)
@@ -107,4 +152,21 @@ list.insert(33, 1)
 list.print()
 list.insert(44, 2)
 list.print()
-console.log(list.getSize())
+console.log("list size: ", list.getSize())
+
+console.log("- REMOVE FROM INDEX -")
+console.log(list.removeFrom(15))
+console.log(list.removeFrom(0))
+list.print()
+console.log(list.removeFrom(2))
+list.print()
+console.log("list size: ", list.getSize())
+
+console.log("- REMOVE VALUE -")
+console.log(list.removeValue(33))
+list.print()
+console.log(list.removeValue("a"))
+list.print()
+console.log(list.removeValue("gg"))
+list.print()
+console.log("list size: ", list.getSize())
