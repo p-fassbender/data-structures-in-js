@@ -108,6 +108,22 @@ class LinkedList {
         }
     }
 
+    search(value) {
+        if (this.isEmpty()) {
+            return -1
+        }
+        let i = 0
+        let curr = this.head
+        while (curr) {
+            if (curr.value === value) {
+                return i
+            }
+            curr = curr.next
+            i++
+        }
+        return -1
+    }
+
     print() {
         if (this.isEmpty()) {
             console.log("the list is empty")
@@ -170,3 +186,7 @@ list.print()
 console.log(list.removeValue("gg"))
 list.print()
 console.log("list size: ", list.getSize())
+
+console.log("- SEARCH VALUE -")
+console.log(list.search(2))
+console.log(list.search("b"))
