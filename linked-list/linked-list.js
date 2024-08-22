@@ -65,6 +65,7 @@ class LinkedList {
         }
     }
 
+    // time complexity: O(n)
     removeFrom(index) {
         if (index < 0 || index >= this.size) {
             return null
@@ -85,6 +86,7 @@ class LinkedList {
         return removedNode.value
     }
 
+    // time complexity O(n)
     removeValue(value) {
         if (this.isEmpty()) {
             return null
@@ -95,7 +97,7 @@ class LinkedList {
             return value
         } else {
             let prev = this.head
-            while (prev.next && prev.next.value != value) {
+            while (prev.next && prev.next.value !== value) {
                 prev = prev.next
             }
             if (prev.next) {
@@ -108,6 +110,7 @@ class LinkedList {
         }
     }
 
+    // time complexity O(n)
     search(value) {
         if (this.isEmpty()) {
             return -1
@@ -124,6 +127,7 @@ class LinkedList {
         return -1
     }
 
+    // time complexity O(n)
     reverse() {
         let prev = null
         let curr = this.head
@@ -141,12 +145,12 @@ class LinkedList {
             console.log("the list is empty")
         } else {
             let curr = this.head
-            let listValue = ''
+            let listValues = ''
             while (curr) {
-                listValue += `${curr.value} `
+                listValues += `${curr.value} `
                 curr = curr.next
             }
-            console.log(listValue)
+            console.log(listValues)
         }
     }
 }
